@@ -1,0 +1,209 @@
+/* These are all the same styles, I thought that they would be different. 
+Once I got the SASS converted, it was easy to see that the differnet 
+versions were the same, so the LESS was easier to convert. It took a minute
+to figure out what format to use sice the playgrounds showed the converted 
+styles to older CSS and I thought that was what we were supposed to use at
+first. But I figured we were supposed to use the original SASS and LESS formats
+since they were the nested formatting. */
+
+/* ===== CONVERSION FROM SASS ===== */
+/* Brand colors and spacing, straight convsersion from SASS variables. */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --base-spacing: 1rem;
+    --border-radius: 0.5rem;
+}
+
+/* general button styles */
+/* There is no @include equivalent, so just use a class that can 
+be added as the base for all buttons. The preprocessor is a better alternative 
+to a long list of calsses for each element. */
+.button-base {
+    padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* navigation styles */
+/* pretty straightforward conversion*/
+.navigation {
+    background-color: var(--primary-color);
+    padding: var(--base-spacing);
+
+    .nav-list {
+        display: flex;
+        gap: var(--base-spacing);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            a {
+                color: white;
+                text-decoration: none;
+                padding: calc(var(--base-spacing) * 0.5);            
+                border-radius: calc(var(--border-radius) * 0.5);
+                
+                &:hover {
+                    background-color: color-mix(in srgb, var(--primary-color) 90%, white );
+                    /* formatting based on reading for CSS functions.*/
+                }
+
+                &.active {
+                    background-color: var(--secondary-color);
+                }
+            }
+        }
+    }
+}
+
+/* button styles */
+/* pretty straightforward conversion*/
+.btn {
+    &.btn-primary {
+        background-color: var(--secondary-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--secondary-color) 92%, black);
+            /* formatting based on reading for CSS functions.*/
+
+        }
+    }
+
+    &.btn-danger {
+        background-color: var(--accent-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 92%, black);
+            /* formatting based on reading for CSS functions.*/
+
+        }
+    }
+}
+
+/* card component */
+/* pretty straightforward conversion*/
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: calc(var(--base-spacing) * 1.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .card-header {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: var(--base-spacing);
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: calc(var(--base-spacing) * 0.5);
+    }
+
+    .card-body {
+        color: #333;
+        line-height: 1.6;
+    }
+}
+
+/* ===== CONVERSION FROM LESS ===== */
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --base-spacing: 1rem;
+    --border-radius: 0.5rem;
+}
+
+/* general button styles */
+/* There is no mixin equivalent, so just use a class that can 
+be added as the base for all buttons. The preprocessor is a better alternative 
+to a long list of calsses for each element. */
+.button-base {
+    padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* navigation styles */
+/* pretty straightforward conversion*/
+.navigation {
+    background-color: var(--primary-color);
+    padding: var(--base-spacing);
+
+    .nav-list {
+        display: flex;
+        gap: var(--base-spacing);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            a {
+                color: white;
+                text-decoration: none;
+                padding: calc(var(--base-spacing) * 0.5);            
+                border-radius: calc(var(--border-radius) * 0.5);
+                
+                &:hover {
+                    background-color: color-mix(in srgb, var(--primary-color) 90%, white );
+                }
+
+                &.active {
+                    background-color: var(--secondary-color);
+                }
+            }
+        }
+    }
+}
+
+/* button styles */
+/* pretty straightforward conversion*/
+.btn {
+    &.btn-primary {
+        background-color: var(--secondary-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--secondary-color), black 8%); 
+            /* attempted with opposite values from original color-mix*/
+        }
+    }
+
+    &.btn-danger {
+        background-color: var(--accent-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--accent-color), black 8%);
+            /* attempted with opposite values from original color-mix*/
+
+        }
+    }
+}
+
+/* card component */
+/* pretty straightforward conversion*/
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: calc(var(--base-spacing) * 1.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .card-header {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: var(--base-spacing);
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: calc(var(--base-spacing) * 0.5);
+    }
+
+    .card-body {
+        color: #333;
+        line-height: 1.6;
+    }
+}
