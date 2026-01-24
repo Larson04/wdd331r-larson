@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'Rock Salt';
+    src: url('/fonts/rock-salt.woff2') format('woff2'),
+         url('/fonts/rock-salt.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* Font families */
+    --font-family-headers: 'Rock Salt', cursive;
+    --font-family-sans: 'Inter Variable', system-ui, sans-serif;
+    --font-family-serif: Georgia, serif;
+
+   
+    /* Colors */
+    --color-text: #1f3261;
+    --color-text-2: #015743;
+
+    /* Font Sizes */
+    /* These values are based on my own preference for sizing of certain elements.
+    I don't like very large headings so I did a base increase adn then made the 
+    largest size the largest size that I prefer and ajusted from there. */
+    --scale-ratio: 1.25;
+    --font-size-base: 1rem;
+    --font-size-sm: calc(var(--font-size-base) / var(--scale-ratio));
+    --font-size-md: calc(var(--font-size-base) * var(--scale-ratio));
+    --font-size-lg: calc(var(--font-size-base) * var(--scale-ratio) * var(--scale-ratio));
+    --font-size-xl: calc(var(--font-size-lg) * var(--scale-ratio));
+    --font-size-2xl: calc(var(--font-size-lg) * (var(--scale-ratio) * 1.15));
+
+    /* line width */
+    /* I would prefer the spacing to be a bit wider, but I stayed withing the 
+    parameters given. */
+    --line-width-narrow: 50ch;
+    --line-width-normal: 65ch;
+    --line-width-wide: 75ch;
+    
+    /* Vertical Rhythm */
+    /* Again, just prefered visual appearance. */
+    --rhythm-base: 1.5rem;
+    --rhythm-modulation-xs: calc(var(--rhythm-base) * 0.25);
+    --rhythm-modulation-sm: calc(var(--rhythm-base) * 0.5);
+    --rhythm-modulation-md: var(--rhythm-base);
+    --rhythm-modulation-lg: calc(var(--rhythm-base) * 1.5);
+    --rhythm-modulation-xl: calc(var(--rhythm-base) * 2);
+}
+
+*{
+    margin: auto;
+    padding: 5px;
+}
+
+/* Base typography */
+body {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    max-width: var(--line-width-wide);
+    line-height: var(--rhythm-modulation-md);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headers);
+    max-width: var(--line-width-narrow);
+    font-weight: 700;
+    line-height: var(--rhythm-modulation-xl);
+    margin-top: var(--rhythm-modulation-lg);
+    margin-bottom: var(--rhythm-modulation-sm);
+    color: var(--color-text-2);
+}
+
+h1 {
+    font-size: var(--font-size-2xl);
+    max-width: var(--line-width-narrow);
+}
+
+h2 {
+    font-size: var(--font-size-xl);
+    max-width: var(--line-width-narrow);
+}
+
+h3 {
+    font-size: var(--font-size-lg);
+    max-width: var(--line-width-normal);
+}
+
+h4 {
+    font-size: var(--font-size-md);
+}
+
+/* Body text */
+p {
+    font-size: var(--font-size-base);
+    line-height: var(--rhythm-modulation-md);
+    max-width: var(--line-width-wide);
+    margin-bottom: var(--rhythm-modulation-md);
+}
+
+/* Long-form content */
+article p {
+    line-height: var(--line-height-relaxed);
+}
+
+/* Lists */
+ul, ol {
+    max-width: var(--line-width-normal);
+    margin-bottom: var(--rhythm-modulation-md);
+    padding-left: var(--rhythm-modulation-md);
+    
+    li {
+        margin-bottom: var(--rhythm-modulation-xs);
+    }
+}
+
+
+/* Links */
+a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 700;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
