@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Rock Salt';
+    src: url('/fonts/rock-salt.woff2') format('woff2'),
+         url('/fonts/rock-salt.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+*{
+    font-family: 'Inter Variable', system-ui, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rock Salt', cursive;
+}
+
 /* These are all the same styles, I thought that they would be different. 
 Once I got the SASS converted, it was easy to see that the differnet 
 versions were the same, so the LESS was easier to convert. It took a minute
