@@ -1,0 +1,216 @@
+/**
+ * Product Showcase - Theming System
+ * 
+ * ARCHITECTURE CHOICE:
+ * Choose either CUBE CSS or BEM for organizing your CSS.
+ * Document your choice and follow it consistently throughout.
+ * 
+ * CUBE CSS approach:
+ * - Composition: Layout patterns (.flow, .grid, .cluster)
+ * - Utilities: Single-purpose classes (.text-center, .font-bold)
+ * - Blocks: Component styles (.card, .button)
+ * - Exceptions: State variations (add additional classes as needed)
+ * 
+ * BEM approach:
+ * - Blocks: Standalone components (.card)
+ * - Elements: Parts of blocks (.card__title, .card__image)
+ * - Modifiers: Variations (.card--featured)
+ * 
+ * ORGANIZATION:
+ * You may create additional CSS files if you prefer to separate:
+ * - Base styles and custom properties
+ * - Layout patterns
+ * - Components
+ * - Utilities
+ * 
+ * MODERN CSS FEATURES TO USE:
+ * - CSS nesting throughout
+ * - Custom properties for theming
+ * - color-mix() for color variations
+ * - Modern selectors (:is, :where, :has, :not)
+ * - Logical properties (margin-inline, padding-block)
+ * 
+ * REQUIREMENTS:
+ * 1. Define theme system with custom properties
+ * 2. Implement light and dark themes
+ * 3. Support prefers-color-scheme
+ * 4. Use color-mix() for color variations
+ * 5. Create responsive layout
+ * 6. Ensure accessibility (contrast, focus indicators, reduced motion)
+ * 7. Style all components and states
+ */
+
+/* Your CSS implementation goes here */
+
+/* BEM CSS approach */
+
+/* Base styles */
+:root {
+    /* Light Mode Colors */
+    --color-background: oklch(0.9278 0.0046 34.31) /* #eae6e5 */;
+    --color-primary: oklch(0.6142 0.0701 163.87) /* #5b9279 */;
+    --color-secondary: oklch(0.7882 0.0918 150.09) /* #8FCB9B */;
+    --color-accent: oklch(0.6097 0.0266 63.23) /* #8f8073 */;
+    --color-text: oklch(0.3073 0.0029 17.31) /* #312f2f */;
+    --color-text-accent: var(--color-background, #eae6e5);
+    --color-link: color-mix(in oklch, var(--color-text), var(--color-accent) 60% );
+    --color-link-hover: var(--color-accent);
+    --color-button: var(--color-secondary);
+    --color-button-hover: color-mix(in oklch, var(--color-button), black 15% );
+
+    /* Universal variables */
+    --font-headers: 'Rock Salt', cursive;
+    --font-sans: 'Inter Variable', system-ui, sans-serif;
+    --font-serif: Georgia, serif;
+
+    --base-spacing: 1rem;
+    --border-radius: 1rem;
+}
+
+.dark-theme {
+    --color-background: oklch(0.3073 0.0029 17.31) /* #312f2f */;
+    --color-primary: color-mix(in oklch, oklch(0.6142 0.0701 163.87) /* #5b9279 */, black 30% );
+    --color-secondary: color-mix(in oklch, #8fcb9b, black 30% );
+    --color-accent: color-mix(in oklch,oklch(0.6097 0.0266 63.23), black 20%) /* #8f8073 */;
+    --color-text: oklch(0.9278 0.0046 34.31) /* #eae6e5 */;
+    --color-link: color-mix(in oklch, var(--color-text), var(--color-accent) 60% );
+    --color-link-hover: color-mix(in oklch, var(--color-link), oklch(0.3073 0.0029 17.31) /* #312f2f */ 40% );
+    --color-button: var(--color-secondary);
+    --color-button-hover: color-mix(in oklch, var(--color-button), black 15% );
+}
+
+body{
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+}
+
+.site-header {
+    background-color: var(--color-primary);
+}
+
+.hero{
+    background-color: var(--color-accent);
+    color: var(--color-text-accent)
+}
+
+.fiters{
+    background-color: var(--color-accent);
+}
+
+.site-footer{
+    background-color: color-mix(in oklch , var(--color-primary), black 30%);
+    color: var(--color-text-accent);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headers);
+}
+
+/* Layout styles */
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.site-header{
+    width:100%;
+    
+    .header-content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 var(--base-spacing);
+        
+    }
+}
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hero {
+    padding: 2rem 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.filters{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .filter-buttons{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: calc(var(--base-spacing) * 0.5);
+        margin: var(--base-spacing) 0;
+    }
+}
+.products{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    
+    
+    .product-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(var(--base-spacing) * 1.5);
+        margin: var(--base-spacing);
+    }
+}
+
+/* Component styles */
+.theme-toggle{
+    background-color: var(--color-background);
+    color: var(--color-text);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--base-spacing);
+    cursor: pointer;
+}
+.visually-hidden{
+    display: none;
+}
+
+.filter-button{
+    background-color: var(--color-button);
+    color: var(--color-text);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+    cursor: pointer;
+
+    &:hover{
+        background-color: var(--color-button-hover);
+        color: var(--color-text-accent)
+    }
+
+    &.active{
+        background-color: var(--color-primary);
+        color: var(--color-text-accent)
+    }
+}
+
+.product-card{
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius);
+    padding: var(--base-spacing);
+    text-align: center;
+
+    .product-image{
+        width: 100%;
+        border-radius: var(--border-radius);
+    }
+}
+
+/* Utility styles */
