@@ -91,7 +91,7 @@ body{
 
 .hero{
     background-color: var(--color-accent);
-    color: var(--color-text-accent)
+    color: var(--color-text)
 }
 
 .fiters{
@@ -119,9 +119,14 @@ body {
     
     .header-content{
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: space-around;
         align-items: center;
         padding: 0 var(--base-spacing);
+
+        @media (min-width: 700px) {
+            flex-direction: row;
+        }
         
     }
 }
@@ -134,8 +139,12 @@ main{
     width: 100%;
 }
 
+.nav-link, .theme-toggle{
+    padding: calc(var(--base-spacing) * 0.75);
+    margin: calc(var(--base-spacing) * 0.25);
+}
+
 .hero {
-    padding: 2rem 2rem;
     text-align: center;
     width: 100%;
 }
@@ -160,7 +169,6 @@ main{
     align-items: center;
     margin: 0 auto;
     
-    
     .product-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -178,15 +186,47 @@ main{
             }
         }
     }
+
+    @media (min-width: 700px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1000px) {
+        .product-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+.site-footer{
+    padding: var(--base-spacing);
+    text-align: center;
 }
 
 /* Component styles */
+.nav-link{
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--color-button);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    color: var(--color-text);
+    text-decoration: none;
+
+    &:hover{
+        background-color: var(--color-button-hover);
+        color: var(--color-text-accent)
+    }
+}
+
 .theme-toggle{
     background-color: var(--color-background);
     color: var(--color-text);
     border: none;
     border-radius: var(--border-radius);
-    padding: var(--base-spacing);
     cursor: pointer;
 }
 .visually-hidden{
@@ -207,8 +247,8 @@ main{
     }
 
     &.active{
-        background-color: var(--color-primary);
-        color: var(--color-text-accent)
+        background-color: color-mix(in oklch, var(--color-primary), white 15% );
+        color: var(--color-text)
     }
 }
 
@@ -231,7 +271,7 @@ main{
             background-color: var(--color-button);
             color: var(--color-text);
             border: none;
-            
+            border-radius: calc(var(--border-radius) * .5);
             padding: calc(var(--base-spacing) * .5) calc(var(--base-spacing) * .35);
             cursor: pointer;
 
