@@ -139,9 +139,9 @@ main{
     width: 100%;
 }
 
-.nav-link, .theme-toggle{
+.navigation-link, .theme-toggle{
     padding: calc(var(--base-spacing) * 0.75);
-    margin: calc(var(--base-spacing) * 0.25);
+    margin: calc(var(--base-spacing) * 0.25); /* why are these not deploying on the home link???????*/ 
 }
 
 .hero {
