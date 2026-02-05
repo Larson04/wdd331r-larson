@@ -11,3 +11,32 @@
  * Goal: Recreate the exact same visual appearance as styles-old.css
  * but with cleaner, more maintainable code using modern CSS techniques.
  */
+
+
+ :root {
+    /* Colors */
+    --color-primary: #667eea;
+    --color-secondary: #764ba2;
+    --color-background: #ffffff;
+    
+    --color-text: #2c3e50;
+    --color--on-color-text:#ffffffe6;
+    --color-nav-text: #666;
+
+    --color-shadow: #0000001a;
+
+    /* Fluid Spacing (scales with viewport) */
+    --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
+    --spacing-sm: clamp(0.5rem, 2vw, 1rem);
+    /* Add more spacing values... */
+
+    /* Fluid Typography */
+    --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
+    --font-size-lg: calc(var(--font-size-base) * 1.25);
+    /* Add more type sizes... */
+
+    /* Layout */
+    --max-width: 1200px;
+    --border-radius: 0.5rem;
+    /* Add more layout values... */
+}
