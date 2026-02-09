@@ -46,6 +46,9 @@ to a long list of calsses for each element. */
 
     .nav-list {
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
         gap: var(--base-spacing);
         list-style: none;
         margin: 0;
