@@ -49,6 +49,16 @@
    Hint: body needs to be a flex container
 */
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1; /* or flex-grow: 1 */
+}
+
 
 /* ===========================================
    HEADER
@@ -66,6 +76,9 @@
     
     /* TODO: Use grid-template-areas here */
     /* Define areas for logo and nav */
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: auto;
+    grid-template-areas: "logo nav";
 }
 
 .site-logo {
@@ -75,14 +88,19 @@
     color: var(--color-text);
     
     /* TODO: Assign to grid area */
+    grid-area: logo;
 }
 
 .site-nav {
     /* TODO: Assign to grid area */
+    grid-area: nav;
 }
 
 .site-nav ul {
     /* TODO: Use flexbox for navigation links */
+    display:flex;
+    gap: var(--spacing-lg);
+    align-items: center;
 }
 
 .site-nav a {
@@ -101,6 +119,7 @@
    =========================================== */
 .main-content {
     /* TODO: Make this grow to push footer down */
+    flex-grow: 1;
 }
 
 
@@ -114,6 +133,8 @@
     min-height: 500px;
     
     /* TODO: Use grid to center content */
+    display: grid;
+    place-items: center;
 }
 
 .hero-content {
@@ -151,6 +172,9 @@
     /* TODO: Use auto-fit with minmax */
     /* Make cards responsive - 3 columns on desktop, fewer on smaller screens */
     /* Hint: minmax(min(250px, 100%), 1fr) prevents overflow on mobile */
+    display: grid;
+    grid-template-columns: repeat(autofit, minmax(min(250px, 100%), 1fr));
+    gap: var(--spacing-lg);
 }
 
 
@@ -177,6 +201,8 @@
     /* Experiment: Try auto-fill first, then auto-fit */
     /* Which one looks better for a photo gallery? */
     /* Consider: Do you want photos to expand or stay consistent width? */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
 }
 
 
