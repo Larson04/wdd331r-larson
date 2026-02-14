@@ -72,6 +72,10 @@ body {
        
        Don't forget gap!
     */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: var(--spacing-lg);
+    grid-auto-rows: auto 250px 1fr auto;
 }
 
 .portfolio-card {
@@ -87,6 +91,10 @@ body {
        This is the magic! Each card now aligns to parent row tracks,
        making titles align with titles, images with images, etc.
     */
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    gap: var(--spacing-sm);
     
     background: var(--color-surface);
     border-radius: var(--radius-med);
@@ -138,6 +146,7 @@ body {
        it might center vertically in that expanded space.
        align-self: start keeps it at the top of its row.
     */
+    align-self: start;
 }
 
 .portfolio-card-footer {
@@ -177,6 +186,16 @@ body {
    
    This ensures the layout works for everyone, enhanced for modern browsers!
 */
+@supports (grid-template-rows: subgrid) {
+   .portfolio-grid {
+      grid-template-rows: auto auto 1fr auto;
+   }
+   
+   .portfolio-card {
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+   }
+}
 
 /* ===========================================
    REFLECTION QUESTIONS
@@ -187,13 +206,16 @@ body {
    1. What problem does subgrid solve in this layout?
       - Without subgrid, what happens when one card has a longer title?
       - How does subgrid fix this?
+      The content of each card was not horizontally aligned throughout the page. The titles nad descriptions were varied in length so it was causing issues with the alignment. Subgrid was able to set a standard hight for the different rows to keep everything aligned.
    
    2. What would happen if you DIDN'T use subgrid here?
       - Try it! Comment out the subgrid code temporarily.
       - How does the layout look different?
       - Why is subgrid better for this use case?
+      If I did not use subgrid, the content would be at varying levels within the cards, a longer title causeing everyhting else to be lower than the card next to it, or a shorter description causeing the button to be higher. Subgrid was able to set a standard height for the different rows to keep everything aligned.
    
    3. When should you NOT use subgrid?
       - If each card had completely different content structure?
       - If cards were independent modules with no alignment needs?
+      Subgrid should not be used when each card has completely different content structure and are independent modules like on the dashboard page.
 */

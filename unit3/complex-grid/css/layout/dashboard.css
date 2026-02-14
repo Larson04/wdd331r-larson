@@ -66,6 +66,9 @@ body {
        - No empty tracks on wide screens
        - Automatic wrapping as screen narrows
     */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: var(--spacing-lg);
 }
 
 .stat-card {
@@ -124,6 +127,9 @@ body {
        
        Answer in your assignment reflection!
     */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+    gap: var(--spacing-lg);
 }
 
 .activity-card {
@@ -172,12 +178,25 @@ body {
    1. Why did you choose auto-fit over auto-fill for these grids?
       - What happens with auto-fill when there are few cards?
       - What happens with auto-fit?
+      I prefer the affects of auto-fit because it collapses the 
+      white space between cards when there are few cards.
+      Auto-fill leaves them empty.
    
    2. Does this dashboard layout benefit from subgrid?
       - Are you trying to align content ACROSS cards?
       - Or is each card independent?
+      I would have preferred to have each card's content 
+      aligned, but the cards on the dashboard are typically 
+      indemendent of each other so the contnet does not need
+      to be aligned.
    
    3. Could you achieve the same layout with Flexbox?
       - What would be harder with Flexbox?
       - When is Grid the better choice?
+      Flexbox could potentially have the same layout, but it is 
+      quicker and easier to use the auto-fit grid style as it 
+      automatically adjusts to the size of the screen. Getting 
+      the cards to align would take multiple lines of code with 
+      flexbox, whereas we jsut needed to use one line to get the 
+      desired look.
 */

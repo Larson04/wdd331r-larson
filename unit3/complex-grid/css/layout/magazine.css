@@ -71,6 +71,12 @@ body {
        Set column sizes: 2fr for article, 1fr for sidebar
        Add gap between areas
     */
+    display: grid;
+    grid-template-areas: 
+        "feature feature"
+        "article sidebar";
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-lg);
 }
 
 /* ===========================================
@@ -78,7 +84,7 @@ body {
    =========================================== */
 .feature-section {
     /* TODO: Assign to grid area "feature" */
-    
+    grid-area: feature;
     /*
        TODO: Create a nested grid using NAMED GRID LINES
        
@@ -88,6 +94,16 @@ body {
        
        This allows precise positioning with line names instead of numbers
     */
+    display: grid;
+    grid-template-columns: 
+        [full-start] 1fr 
+        [content-start] 2fr 
+        [content-end] 1fr 
+        [full-end];
+    grid-template-rows: 
+        [top] 300px 
+        [middle] 200px 
+        [bottom];
 }
 
 .feature-image {
@@ -96,6 +112,8 @@ body {
        Hint: grid-column: full-start / full-end;
              grid-row: top / bottom;
     */
+    grid-column: full-start / full-end;
+    grid-row: top / bottom;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -115,6 +133,8 @@ body {
        
        This creates the overlapping magazine effect!
     */
+    grid-column: content-start / content-end;
+    grid-row: middle / bottom;
 }
 
 .feature-content h2 {
@@ -127,6 +147,7 @@ body {
    =========================================== */
 .article-section {
     /* TODO: Assign to grid area "article" */
+    grid-area: article;
     background: var(--color-surface);
     padding: var(--spacing-xl);
     border-radius: var(--radius-med);
@@ -148,6 +169,7 @@ body {
    =========================================== */
 .sidebar {
     /* TODO: Assign to grid area "sidebar" */
+    grid-area: sidebar;
 }
 
 .sidebar-card {
@@ -185,3 +207,19 @@ body {
    - Simplify the grid (no overlapping)
    - Stack image and content vertically
 */
+
+@media screen and (max-width: 768px) {
+    .magazine-container {
+        grid-template-areas: 
+            "feature"
+            "article"
+            "sidebar";
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-section {
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
