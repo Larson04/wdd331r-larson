@@ -22,7 +22,20 @@
    Note: transform-origin: left is already set in base.css so the
    bar grows from the left edge rather than the center.
 */
+@keyframes bar-grow {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
 
+.progress-bar {
+   animation-name: bar-grow;
+   animation-timeline: scroll(root block);
+   animation-fill-mode: both;
+}
 
 /* TODO 2: Card Entrance
    ---------------------------------------------------------------
@@ -41,7 +54,23 @@
    4. Add animation-fill-mode: both so cards below the fold stay
       invisible until they begin entering the viewport.
 */
+@keyframes card-entrance {
+    from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+.card {
+   animation-name: card-entrance;
+   animation-timeline: view();
+   animation-range: entry 0% entry 50%;
+   animation-fill-mode: both;
+}
 
 /* TODO 3: Feature Section — Left Slide In
    ---------------------------------------------------------------
@@ -55,43 +84,84 @@
    3. Use the same animation-range as the cards.
    4. Add animation-fill-mode: both.
 */
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-3rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
+.feature-section--left {
+   animation-name: slide-in-left;
+   animation-timeline: view();
+   animation-range: entry 0% entry 50%;
+   animation-fill-mode: both;
+}
 
 /* TODO 4: Feature Section — Right Slide In
    ---------------------------------------------------------------
    Same approach as TODO 3, but for .feature-section--right which
    starts at translateX(3rem) and slides in from the right.
 */
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(3rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
+.feature-section--right {
+   animation-name: slide-in-right;
+   animation-timeline: view();
+   animation-range: entry 0% entry 50%;
+   animation-fill-mode: both;
+}
 
 /* ============================================================
    REDUCED MOTION
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-    /* TODO 5: Reduced Motion Support
-       -----------------------------------------------------------
-       Users who prefer reduced motion should not see any of the
-       animations above. However, simply removing the animations
-       is not enough — those elements start in an invisible or
-       offset state in base.css, so they will remain broken if
-       animation: none is all you write.
+   /* TODO 5: Reduced Motion Support
+      -----------------------------------------------------------
+      Users who prefer reduced motion should not see any of the
+      animations above. However, simply removing the animations
+      is not enough — those elements start in an invisible or
+      offset state in base.css, so they will remain broken if
+      animation: none is all you write.
 
-       Steps:
-       1. Set animation: none on:
-             .progress-bar
-             .card
-             .feature-section--left
-             .feature-section--right
+      Steps:
+      1. Set animation: none on:
+            .progress-bar
+            .card
+            .feature-section--left
+            .feature-section--right
 
-       2. Restore the final visible state for each animated element
-          so they appear correctly without any animation running:
-             opacity: 1
-             transform: none
+      2. Restore the final visible state for each animated element
+         so they appear correctly without any animation running:
+            opacity: 1
+            transform: none
 
-       The JavaScript in gallery.js already handles the hero elements
-       (.hero-eyebrow, .hero-title, .hero-description) by checking
-       prefers-reduced-motion before running WAAPI. You only need
-       to handle the CSS-animated elements here.
-    */
+      The JavaScript in gallery.js already handles the hero elements
+      (.hero-eyebrow, .hero-title, .hero-description) by checking
+      prefers-reduced-motion before running WAAPI. You only need
+      to handle the CSS-animated elements here.
+   */
+
+   .progress-bar,
+   .card,
+   .feature-section--left,
+   .feature-section--right {
+      animation: none;
+      opacity: 1;
+      transform: none;
+   }
 }
